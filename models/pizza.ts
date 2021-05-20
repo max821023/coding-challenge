@@ -3,7 +3,8 @@ import IPizza from '../interfaces/pizza';
 
 const PizzaSchema: Schema = new Schema({
   name: { type: String, required: true },
-  ingredients: [{ type: String }]
+  toppings: [{ type: String }],
+  photo: { type: String }
 })
 
 export default mongoose.model<IPizza>('Pizza', PizzaSchema);

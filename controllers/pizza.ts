@@ -1,14 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
-import mongoose from 'mongoose';
 import Pizza from '../models/Pizza';
 
 const createPizza = (req: Request, res: Response, next: NextFunction) => {
-  let { name, ingredients } = req.body;
+  let { name, toppings, photo } = req.body;
 
   const pizza = new Pizza({
-    _id: new mongoose.Types.ObjectId(),
     name,
-    ingredients
+    toppings,
+    photo
   });
 
   return pizza.save()
