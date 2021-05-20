@@ -10,8 +10,11 @@ const getAllPizzas = (req: Request, res: Response, next: NextFunction) => {
     });
   })
   .catch(error => {
-    return res.status(500)
-  })
-}
+    return res.status(500).json({
+      message: error.message,
+      error
+    });
+  });
+};
 
 export default { getAllPizzas };

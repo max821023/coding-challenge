@@ -2,6 +2,7 @@ import cors from "cors";
 import "dotenv/config";
 import express from "express";
 import mongoose from 'mongoose';
+import pizzas from '../routes/pizza';
 
 class CodingChallenge {
   private port = process.env.PORT;
@@ -34,6 +35,7 @@ class CodingChallenge {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(cors());
+    this.app.use('/api/pizzas', pizzas);
   }
 }
 
