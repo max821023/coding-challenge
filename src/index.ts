@@ -1,6 +1,7 @@
 import cors from "cors";
 import "dotenv/config";
 import express from "express";
+import mongoose from 'mongoose';
 
 class CodingChallenge {
   private port = process.env.PORT;
@@ -11,11 +12,19 @@ class CodingChallenge {
     this.routes();
   }
 
+  connect(): void {
+    const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PW}@cluster0.tdyd4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+    mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+      .then(() => console.log("Mongo works"))
+      .catch(err => console.log(err))
+  }
+
   public start(): void {
     this.app.listen(this.port, () =>
       console.log(`Example app listening on port ${this.port}!`)
     );
   }
+
   public routes(): void {
     this.app.get("/", (req, res) => res.send("juice. Coding Challenge"));
   }
@@ -29,4 +38,5 @@ class CodingChallenge {
 }
 
 const codingChallenge = new CodingChallenge();
+codingChallenge.connect();
 codingChallenge.start();
