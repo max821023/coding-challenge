@@ -1,4 +1,4 @@
-import ListOne from './components/ListOne';
+import List from './components/List'
 import { Container, Button, MenuItem, Menu } from '@material-ui/core'
 
 function App() {
@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <Container>
         <h1>Get a pizza recommendation!</h1>
-        <ListOne/>
+        <List/>
       </Container>
     </div>
   );
