@@ -6,9 +6,9 @@ interface IPizza {
 
 interface IRecommendation {
   _id: string
-  recommendedPizza: string
-  firstIngredient: string
-  secondIngredient: string
+  ingredientOne: string
+  ingredientTwo: string
+  recommendedPizza?: string
 }
 
 type ApiDataType = {
