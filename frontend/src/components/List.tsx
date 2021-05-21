@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(1),
       minWidth: 140,
     },
+    button: {
+      margin: '20px'
+    }
   }),
 );
 
@@ -23,7 +26,7 @@ export default function GroupedSelect() {
 
   const addRecommendation = (event: any) => {
     console.log(ingredientOne, ingredientTwo)
-    // event.preventDefault();
+    event.preventDefault();
 
     // db.collection('todos').add({
     //   text: input,
@@ -47,30 +50,35 @@ export default function GroupedSelect() {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="grouped-select">Ingredient One</InputLabel>
         <Select defaultValue="" id="grouped-select">
-          <MenuItem value="">
+          <MenuItem value="" onClick={changeIngredientOne}>
             <em>None</em>
           </MenuItem>
-          <MenuItem value={'alfredo'} onClick={changeIngredientOne}>Alfredo</MenuItem>
-          <MenuItem value={'cheese'} onClick={changeIngredientOne}>Cheese</MenuItem>
-          <MenuItem value={'ham'} onClick={changeIngredientOne}>Ham</MenuItem>
-          <MenuItem value={'herbs'} onClick={changeIngredientOne}>Herbs</MenuItem>
-          <MenuItem value={'pepperoni'} onClick={changeIngredientOne}>Pepperoni</MenuItem>
+          <MenuItem value='alfredo' onClick={changeIngredientOne}>Alfredo</MenuItem>
+          <MenuItem value='cheese' onClick={changeIngredientOne}>Cheese</MenuItem>
+          <MenuItem value='ham' onClick={changeIngredientOne}>Ham</MenuItem>
+          <MenuItem value='herbs' onClick={changeIngredientOne}>Herbs</MenuItem>
+          <MenuItem value='pepperoni' onClick={changeIngredientOne}>Pepperoni</MenuItem>
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="grouped-select">Ingredient Two</InputLabel>
         <Select defaultValue="" id="grouped-select">
-          <MenuItem value="">
+          <MenuItem value="" onClick={changeIngredientTwo}>
             <em>None</em>
           </MenuItem>
-          <MenuItem value={'cheese'} onClick={changeIngredientTwo}>Cheese</MenuItem>
-          <MenuItem value={'sausage'} onClick={changeIngredientTwo}>Sausage</MenuItem>
-          <MenuItem value={'spinach'} onClick={changeIngredientTwo}>Spinach</MenuItem>
-          <MenuItem value={'mushroom'} onClick={changeIngredientTwo}>Mushroom</MenuItem>
-          <MenuItem value={'chicken'} onClick={changeIngredientTwo}>Chicken</MenuItem>
+          <MenuItem value='cheese' onClick={changeIngredientTwo}>Cheese</MenuItem>
+          <MenuItem value='sausage' onClick={changeIngredientTwo}>Sausage</MenuItem>
+          <MenuItem value='spinach' onClick={changeIngredientTwo}>Spinach</MenuItem>
+          <MenuItem value='mushroom' onClick={changeIngredientTwo}>Mushroom</MenuItem>
+          <MenuItem value='chicken' onClick={changeIngredientTwo}>Chicken</MenuItem>
         </Select>
       </FormControl>
-      <Button type="submit" variant="contained" color="primary" onClick={addRecommendation}>
+      <Button 
+        disabled={!ingredientOne || !ingredientTwo} 
+        type="submit" variant="contained" color="primary" 
+        className={classes.button}
+        onClick={addRecommendation}
+      >
           Generate Pizza
       </Button>
     </div>
