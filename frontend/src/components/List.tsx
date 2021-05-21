@@ -22,7 +22,7 @@ export default function GroupedSelect() {
   const [ingredientTwo, setIngredientTwo] = React.useState('');
 
   const addRecommendation = (event: any) => {
-    console.log("hi")
+    console.log(ingredientOne, ingredientTwo)
     // event.preventDefault();
 
     // db.collection('todos').add({
@@ -34,6 +34,14 @@ export default function GroupedSelect() {
     // setInput(''); //clear input
   }
 
+  const changeIngredientOne = (event: any) => {
+    setIngredientOne(event.currentTarget.getAttribute('data-value'))
+  }
+
+  const changeIngredientTwo = (event: any) => {
+    setIngredientTwo(event.currentTarget.getAttribute('data-value'))
+  }
+  
   return (
     <div>
       <FormControl className={classes.formControl}>
@@ -42,11 +50,11 @@ export default function GroupedSelect() {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={'alfredo'}>Alfredo</MenuItem>
-          <MenuItem value={'cheese'}>Cheese</MenuItem>
-          <MenuItem value={'ham'}>Ham</MenuItem>
-          <MenuItem value={'herbs'}>Herbs</MenuItem>
-          <MenuItem value={'pepperoni'}>Pepperoni</MenuItem>
+          <MenuItem value={'alfredo'} onClick={changeIngredientOne}>Alfredo</MenuItem>
+          <MenuItem value={'cheese'} onClick={changeIngredientOne}>Cheese</MenuItem>
+          <MenuItem value={'ham'} onClick={changeIngredientOne}>Ham</MenuItem>
+          <MenuItem value={'herbs'} onClick={changeIngredientOne}>Herbs</MenuItem>
+          <MenuItem value={'pepperoni'} onClick={changeIngredientOne}>Pepperoni</MenuItem>
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
@@ -55,11 +63,11 @@ export default function GroupedSelect() {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={'cheese'}>Cheese</MenuItem>
-          <MenuItem value={'sausage'}>Sausage</MenuItem>
-          <MenuItem value={'spinach'}>Spinach</MenuItem>
-          <MenuItem value={'mushroom'}>Mushroom</MenuItem>
-          <MenuItem value={'chicken'}>Chicken</MenuItem>
+          <MenuItem value={'cheese'} onClick={changeIngredientTwo}>Cheese</MenuItem>
+          <MenuItem value={'sausage'} onClick={changeIngredientTwo}>Sausage</MenuItem>
+          <MenuItem value={'spinach'} onClick={changeIngredientTwo}>Spinach</MenuItem>
+          <MenuItem value={'mushroom'} onClick={changeIngredientTwo}>Mushroom</MenuItem>
+          <MenuItem value={'chicken'} onClick={changeIngredientTwo}>Chicken</MenuItem>
         </Select>
       </FormControl>
       <Button type="submit" variant="contained" color="primary" onClick={addRecommendation}>
