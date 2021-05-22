@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { addRecommendation } from '../API';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,18 +24,14 @@ export default function GroupedSelect() {
   const classes = useStyles();
   const [ingredientOne, setIngredientOne] = React.useState('');
   const [ingredientTwo, setIngredientTwo] = React.useState('');
+  const [recommendedPizza, setRecommendedPizza] = React.useState('');
 
-  const addRecommendation = (event: any) => {
-    console.log(ingredientOne, ingredientTwo)
+  const handleRecommendation = (event: any) => {
     event.preventDefault();
-
-    // db.collection('todos').add({
-    //   text: input,
-    //   timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    // })
-
-    // setTodos([...todos, input]);
-    // setInput(''); //clear input
+    addRecommendation({ingredientOne, ingredientTwo})
+      .then(data => {
+        setRecommendedPizza(data.data.recommendation.recommendedPizza)
+      })
   }
 
   const changeIngredientOne = (event: any) => {
@@ -77,10 +74,11 @@ export default function GroupedSelect() {
         disabled={!ingredientOne || !ingredientTwo} 
         type="submit" variant="contained" color="primary" 
         className={classes.button}
-        onClick={addRecommendation}
+        onClick={handleRecommendation}
       >
           Generate Pizza
       </Button>
+      {recommendedPizza ? <div>I recommend you a {recommendedPizza} pizza</div> : <div>Click generate pizza</div>}
     </div>
   );
 }

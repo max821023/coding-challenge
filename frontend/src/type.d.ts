@@ -4,6 +4,11 @@ interface IPizza {
   toppings: string[]
 }
 
+interface IIngredient {
+  ingredientOne: string
+  ingredientTwo: string
+}
+
 interface IRecommendation {
   _id: string
   ingredientOne: string
@@ -15,5 +20,5 @@ type ApiDataType = {
   message: string
   status: string
   pizzas: IPizza[]
-  recommendation?: IRecommendation
+  recommendation: IRecommendation
 }

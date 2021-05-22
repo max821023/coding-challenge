@@ -4,26 +4,24 @@ import Pizza from '../models/Pizza';
 
 const createRecommendation = (req: Request, res: Response, next: NextFunction) => {
   let { ingredientOne, ingredientTwo } = req.body;
-  let pizzas: string[] = [];
   Pizza.find({toppings: {$all: [ingredientOne, ingredientTwo]}})
-    .then(data => {
+    .then(async data => {
       const recommendation = new Recommendation({
         ingredientOne,
         ingredientTwo,
         recommendedPizza: data[Math.floor(Math.random()*data.length)].name
       });
-        return recommendation.save()
-          .then(result => {
-            return res.status(201).json({
-              recommendation: result
-            });
-          })
-          .catch(error => {
-            return res.status(500).json({
-            message: error.message,
-            error
-            });
-          })
+        try {
+        const result_1 = await recommendation.save();
+        return res.status(201).json({
+          recommendation: result_1
+        });
+      } catch (error) {
+        return res.status(500).json({
+          message: error.message,
+          error
+        });
+      }
     })
 };
 

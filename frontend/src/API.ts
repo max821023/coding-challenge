@@ -3,17 +3,18 @@ import axios, { AxiosResponse } from 'axios';
 const baseUrl: string = "http://localhost:3000"
 
 export const addRecommendation = async (
-  data: IRecommendation
+  data: IIngredient
 ): Promise<AxiosResponse<ApiDataType>> => {
   try {
-    const recommendation: Omit<IRecommendation, "_id"> = {
+    const ingredients: Omit<IRecommendation, "_id"> = {
       ingredientOne: data.ingredientOne,
       ingredientTwo: data.ingredientTwo
     }
     const saveRecommendation: AxiosResponse<ApiDataType> = await axios.post(
-      baseUrl + "/create/recommendation",
-      recommendation
+      baseUrl + "/api/recommendations/create/recommendation",
+      ingredients
     )
+    // console.log(saveRecommendation)
     return saveRecommendation
   } catch (error) {
     throw new Error(error)
