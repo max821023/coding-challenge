@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-const baseUrl: string = "http://localhost:3000"
+const baseUrl: string = `http://localhost:5000`
 
 export const addRecommendation = async (
   data: IIngredient

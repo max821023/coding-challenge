@@ -30,7 +30,7 @@ export default function GroupedSelect() {
     event.preventDefault();
     addRecommendation({ingredientOne, ingredientTwo})
       .then(data => {
-        setRecommendedPizza(data.data.recommendation.recommendedPizza)
+        setRecommendedPizza(data.data.recommendation.recommendedPizza!)
       })
   }
 
